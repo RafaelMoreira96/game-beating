@@ -1,0 +1,53 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>110</x><y>320</y><w>210</w><h>240</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Game
+--
+- idGame: Long
+- gameName: String
+- developer: String
+- genre: Genre
+- console: Console
+- dateBeating: String
+- timeBeating: String
+- releaseDate: Date
+- playerId: int
+--
+# RegisterNewGame()
+# RemoveGame()
+# EditGame()
+# ViewGame()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>110</x><y>40</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Console
+--
+- idConsole: Long
+- nameOfConsole: String
+- manufacturer: String
+- genre: Genre
+- releaseDate: String
+--
+# RegisterNewConsole()
+# RemoveConsole()
+# EditConsole()
+# ViewConsole()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>460</x><y>50</y><w>180</w><h>170</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Manufacturer
+--
+- idManufacturer: Long
+- nameManufacturer: String
+- yearFounded: int
+--
+# RegisterManufacturer()
+# RemoveManufacturer()
+# UpdateManufacturer()
+# ViewManufacturer()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>210</x><y>220</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>130</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>300</y><w>210</w><h>270</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Player
+--
+- idPlayer: Long
+- namePlayer: String
+- email: String
+- nickname: String
+- password: String
+- registerDate: Date
+--
+# RegisterPlayer()
+# RemovePlayer()
+# UpdatePlayer()
+# ViewPlayer()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>410</y><w>200</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;10</additional_attributes></element></diagram>

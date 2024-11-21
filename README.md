@@ -1,4 +1,3 @@
 ## Game Beating Project
-# game-beating
-# game-beating
-# game-beating
+
+This is a game beated list application, written in Go.
