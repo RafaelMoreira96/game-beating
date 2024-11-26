@@ -26,6 +26,7 @@ Eu tenho algumas coisas que eu gostaria de ir implementando aos poucos, como por
 
 - Integração com a API do VGDB ou HLTB;
 - Visualização do perfil alheio (setado se é público ou privado);
+- Ter uma área de notícias rápidas ou reviews feita pela staff de desenvolvimento ou por jogadores;
 - Uma dashboard robusta, mostrando informações primárias sobre qual jogo foi zerado por último, ou quantos jogos por ano de lançamento foram zerados, entre outras informações que eu ou o usuário julgar pertinente e fazer sentido e;
 - Sou honesto, gostaria de ganhar com esse projeto algum dinheiro, então implementar algum sistema de anúncios que valha a pena, sem atrapalhar a usabilidade do usuário ou então manter a aplicação via donate.
 

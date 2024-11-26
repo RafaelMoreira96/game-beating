@@ -12,5 +12,6 @@ func RunMigrations(db *gorm.DB) {
 		models.Player{},
 		models.Genre{},
 		models.Game{},
+		models.Administrator{},
 	)
 }

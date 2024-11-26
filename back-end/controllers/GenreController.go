@@ -1,12 +1,14 @@
 package controllers
 
 import (
+	"github.com/RafaelMoreira96/game-beating-project/controllers/utils"
 	"github.com/RafaelMoreira96/game-beating-project/database"
 	"github.com/RafaelMoreira96/game-beating-project/models"
 	"github.com/gofiber/fiber/v2"
 )
 
 func AddGenre(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var genre models.Genre
 	genre.IsActive = true
@@ -40,6 +42,7 @@ func AddGenre(c *fiber.Ctx) error {
 }
 
 func ListAllGenres(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var genres []models.Genre
 
@@ -51,6 +54,7 @@ func ListAllGenres(c *fiber.Ctx) error {
 }
 
 func ListDeactivateGenres(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var genres []models.Genre
 
@@ -62,6 +66,7 @@ func ListDeactivateGenres(c *fiber.Ctx) error {
 }
 
 func ViewGenre(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var genre models.Genre
 
@@ -75,6 +80,7 @@ func ViewGenre(c *fiber.Ctx) error {
 }
 
 func UpdateGenre(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var genre models.Genre
 
@@ -100,6 +106,7 @@ func UpdateGenre(c *fiber.Ctx) error {
 }
 
 func ReactivateGenre(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var genre models.Genre
 
@@ -127,6 +134,7 @@ func ReactivateGenre(c *fiber.Ctx) error {
 }
 
 func DeleteGenre(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var genre models.Genre
 

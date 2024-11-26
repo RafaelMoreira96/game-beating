@@ -7,6 +7,20 @@ import (
 )
 
 func AddGame(c *fiber.Ctx) error {
+	role := c.Locals("role").(string)
+	if role != "player" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"message": "Access denied",
+		})
+	}
+
+	playerID, ok := c.Locals("userID").(uint)
+	if !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error getting player id",
+		})
+	}
+
 	db := database.GetDatabase()
 	var game models.Game
 
@@ -43,6 +57,8 @@ func AddGame(c *fiber.Ctx) error {
 		})
 	}
 
+	game.PlayerID = playerID
+
 	if err := db.Create(&game).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error creating game",
@@ -53,10 +69,24 @@ func AddGame(c *fiber.Ctx) error {
 }
 
 func GetBeatenList(c *fiber.Ctx) error {
-	db := database.GetDatabase()
-	var games []models.Game
+	role := c.Locals("role").(string)
+	if role != "player" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"message": "Access denied",
+		})
+	}
 
-	if err := db.Where("player_id = ?", c.Params("id_player")).Find(&games).Error; err != nil {
+	playerID, ok := c.Locals("userID").(uint)
+	if !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error getting player id",
+		})
+	}
+
+	db := database.GetDatabase()
+
+	var games []models.Game
+	if err := db.Where("player_id = ?", playerID).Find(&games).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error into find games",
 		})
@@ -66,10 +96,24 @@ func GetBeatenList(c *fiber.Ctx) error {
 }
 
 func DeleteGame(c *fiber.Ctx) error {
+	role := c.Locals("role").(string)
+	if role != "player" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"message": "Access denied",
+		})
+	}
+
+	playerID, ok := c.Locals("userID").(uint)
+	if !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error getting player id",
+		})
+	}
+
 	db := database.GetDatabase()
 	var game models.Game
 
-	if err := db.Where("id_game = ? AND player_id = ?", c.Params("id_game"), c.Params("id_player")).First(&game).Error; err != nil {
+	if err := db.Where("id_game = ? AND player_id = ?", c.Params("id_game"), playerID).First(&game).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error deleting game: " + err.Error(),
 		})
@@ -85,3 +129,21 @@ func DeleteGame(c *fiber.Ctx) error {
 		"message": "game deleted",
 	})
 }
+
+/* func GetTokenClaims(c *fiber.Ctx, role string, playerID uint) error {
+	role = c.Locals("role").(string)
+	if role != "player" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"message": "Access denied",
+		})
+	}
+
+	playerID, ok := c.Locals("userID").(uint)
+	if !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error getting player id",
+		})
+	}
+
+	return nil
+} */
