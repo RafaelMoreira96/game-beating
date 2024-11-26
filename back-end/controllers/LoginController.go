@@ -12,7 +12,7 @@ type User struct {
 	Password string `json:"password"`
 }
 
-func Login(c *fiber.Ctx) error {
+func LoginPlayer(c *fiber.Ctx) error {
 	db := database.GetDatabase()
 	var user User
 	if err := c.BodyParser(&user); err != nil {
@@ -47,6 +47,52 @@ func Login(c *fiber.Ctx) error {
 	}
 
 	token, err := utils.GenerateJWT(player.IdPlayer)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "error generating token",
+		})
+	}
+
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"token": token,
+	})
+}
+
+func LoginAdmin(c *fiber.Ctx) error {
+	db := database.GetDatabase()
+	var user User
+	if err := c.BodyParser(&user); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error parsing user",
+		})
+	}
+
+	if user.Nickname == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "insert a nickname",
+		})
+	}
+
+	if user.Password == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "insert a password",
+		})
+	}
+
+	var administrator models.Administrator
+	if err := db.Where("nickname = ?", user.Nickname).First(&administrator).Error; err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "user not found",
+		})
+	}
+
+	if administrator.Password != user.Password {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "invalid password",
+		})
+	}
+
+	token, err := utils.GenerateJWT(administrator.IdAdministrator)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": "error generating token",

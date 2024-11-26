@@ -7,6 +7,13 @@ import (
 )
 
 func AddGame(c *fiber.Ctx) error {
+	playerID, ok := c.Locals("playerID").(uint)
+	if !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error getting player id",
+		})
+	}
+
 	db := database.GetDatabase()
 	var game models.Game
 
@@ -43,6 +50,8 @@ func AddGame(c *fiber.Ctx) error {
 		})
 	}
 
+	game.PlayerID = playerID
+
 	if err := db.Create(&game).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error creating game",
@@ -54,9 +63,16 @@ func AddGame(c *fiber.Ctx) error {
 
 func GetBeatenList(c *fiber.Ctx) error {
 	db := database.GetDatabase()
-	var games []models.Game
 
-	if err := db.Where("player_id = ?", c.Params("id_player")).Find(&games).Error; err != nil {
+	playerID := c.Locals("playerID").(uint)
+	if playerID == 0 {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"message": "Player ID not found in token",
+		})
+	}
+
+	var games []models.Game
+	if err := db.Where("player_id = ?", playerID).Find(&games).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error into find games",
 		})
@@ -66,10 +82,17 @@ func GetBeatenList(c *fiber.Ctx) error {
 }
 
 func DeleteGame(c *fiber.Ctx) error {
+	playerID, ok := c.Locals("playerID").(uint)
+	if !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error getting player id",
+		})
+	}
+
 	db := database.GetDatabase()
 	var game models.Game
 
-	if err := db.Where("id_game = ? AND player_id = ?", c.Params("id_game"), c.Params("id_player")).First(&game).Error; err != nil {
+	if err := db.Where("id_game = ? AND player_id = ?", c.Params("id_game"), playerID).First(&game).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error deleting game: " + err.Error(),
 		})
