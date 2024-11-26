@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>110</x><y>320</y><w>210</w><h>240</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+<diagram program="umletino" version="15.1"><zoom_level>19</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>684</x><y>589</y><w>361</w><h>475</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Game
 --
 - idGame: Long
@@ -14,30 +14,32 @@ Game
 # RegisterNewGame()
 # RemoveGame()
 # EditGame()
-# ViewGame()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>110</x><y>40</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+# ViewGame()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>684</x><y>76</y><w>361</w><h>399</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Console
 --
 - idConsole: Long
 - nameOfConsole: String
-- manufacturer: String
+- manufacturer: Manufacturer
 - genre: Genre
 - releaseDate: String
+- isActive: boolean
 --
 # RegisterNewConsole()
 # RemoveConsole()
 # EditConsole()
 # ViewConsole()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>460</x><y>50</y><w>180</w><h>170</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1273</x><y>95</y><w>342</w><h>342</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Manufacturer
 --
 - idManufacturer: Long
 - nameManufacturer: String
 - yearFounded: int
+- isActive: boolean
 --
 # RegisterManufacturer()
 # RemoveManufacturer()
 # UpdateManufacturer()
-# ViewManufacturer()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>210</x><y>220</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>130</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>300</y><w>210</w><h>270</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+# ViewManufacturer()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>836</x><y>456</y><w>57</w><h>171</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1026</x><y>247</y><w>285</w><h>57</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;130;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1273</x><y>589</y><w>342</w><h>418</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Player
 --
 - idPlayer: Long
@@ -46,8 +48,19 @@ Player
 - nickname: String
 - password: String
 - registerDate: Date
+- isActive: boolean
 --
 # RegisterPlayer()
 # RemovePlayer()
 # UpdatePlayer()
-# ViewPlayer()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>410</y><w>200</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;10</additional_attributes></element></diagram>
+# ViewPlayer()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1026</x><y>760</y><w>285</w><h>57</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;130;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>114</x><y>646</y><w>399</w><h>304</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+Genre
+--
+- idGenre: int
+- nameGenre: String
+- isActive: boolean
+--
+# RegisterGenre()
+# RemoveGenre()
+# UpdateGenre()
+# ViewGenre()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>494</x><y>779</y><w>228</w><h>57</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element></diagram>
