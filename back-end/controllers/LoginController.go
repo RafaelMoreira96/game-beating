@@ -46,7 +46,7 @@ func LoginPlayer(c *fiber.Ctx) error {
 		})
 	}
 
-	token, err := utils.GenerateJWT(player.IdPlayer)
+	token, err := utils.GenerateJWT(player.IdPlayer, "player")
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": "error generating token",
@@ -92,7 +92,7 @@ func LoginAdmin(c *fiber.Ctx) error {
 		})
 	}
 
-	token, err := utils.GenerateJWT(administrator.IdAdministrator)
+	token, err := utils.GenerateJWT(administrator.IdAdministrator, "admin")
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": "error generating token",

@@ -7,7 +7,14 @@ import (
 )
 
 func AddGame(c *fiber.Ctx) error {
-	playerID, ok := c.Locals("playerID").(uint)
+	role := c.Locals("role").(string)
+	if role != "player" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"message": "Access denied",
+		})
+	}
+
+	playerID, ok := c.Locals("userID").(uint)
 	if !ok {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error getting player id",
@@ -62,14 +69,21 @@ func AddGame(c *fiber.Ctx) error {
 }
 
 func GetBeatenList(c *fiber.Ctx) error {
-	db := database.GetDatabase()
-
-	playerID := c.Locals("playerID").(uint)
-	if playerID == 0 {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"message": "Player ID not found in token",
+	role := c.Locals("role").(string)
+	if role != "player" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"message": "Access denied",
 		})
 	}
+
+	playerID, ok := c.Locals("userID").(uint)
+	if !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error getting player id",
+		})
+	}
+
+	db := database.GetDatabase()
 
 	var games []models.Game
 	if err := db.Where("player_id = ?", playerID).Find(&games).Error; err != nil {
@@ -82,7 +96,14 @@ func GetBeatenList(c *fiber.Ctx) error {
 }
 
 func DeleteGame(c *fiber.Ctx) error {
-	playerID, ok := c.Locals("playerID").(uint)
+	role := c.Locals("role").(string)
+	if role != "player" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"message": "Access denied",
+		})
+	}
+
+	playerID, ok := c.Locals("userID").(uint)
 	if !ok {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error getting player id",
@@ -108,3 +129,21 @@ func DeleteGame(c *fiber.Ctx) error {
 		"message": "game deleted",
 	})
 }
+
+/* func GetTokenClaims(c *fiber.Ctx, role string, playerID uint) error {
+	role = c.Locals("role").(string)
+	if role != "player" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"message": "Access denied",
+		})
+	}
+
+	playerID, ok := c.Locals("userID").(uint)
+	if !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "error getting player id",
+		})
+	}
+
+	return nil
+} */

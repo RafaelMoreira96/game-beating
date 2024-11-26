@@ -18,6 +18,7 @@ func PublicMethods(app *fiber.App) {
 
 	/* Register player method */
 	app.Post("/api/v1/player", controllers.AddPlayer)
+	app.Post("/api/v1/admin", controllers.AddAdministrator)
 }
 
 func ProtectedMethods(app *fiber.App) {
@@ -52,8 +53,12 @@ func ProtectedMethods(app *fiber.App) {
 	app.Put("/api/v1/genre/activate/:id", controllers.ReactivateGenre)
 
 	/* Player routes methods */
-	app.Get("/api/v1/player/:id", controllers.ViewPlayer)
-	app.Delete("/api/v1/player/:id", controllers.DeletePlayer)
+	app.Get("/api/v1/player/view", controllers.ViewPlayer)
+	app.Delete("/api/v1/player/delete", controllers.DeletePlayer)
+
+	/* Administrator routes methods */
+	app.Get("/api/v1/admin/view", controllers.ViewAdministrator)
+	app.Delete("/api/v1/admin/delete", controllers.DeleteAdministrator)
 
 	/* Game routes methods */
 	app.Post("/api/v1/game", controllers.AddGame)

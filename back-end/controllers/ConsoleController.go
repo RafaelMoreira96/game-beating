@@ -1,12 +1,14 @@
 package controllers
 
 import (
+	"github.com/RafaelMoreira96/game-beating-project/controllers/utils"
 	"github.com/RafaelMoreira96/game-beating-project/database"
 	"github.com/RafaelMoreira96/game-beating-project/models"
 	"github.com/gofiber/fiber/v2"
 )
 
 func AddConsole(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var console models.Console
 	console.IsActive = true
@@ -60,6 +62,7 @@ func GetConsoles(c *fiber.Ctx) error {
 }
 
 func GetInactiveConsoles(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var consoles []models.Console
 
@@ -86,6 +89,7 @@ func ViewConsole(c *fiber.Ctx) error {
 }
 
 func UpdateConsole(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var console models.Console
 
@@ -126,6 +130,7 @@ func UpdateConsole(c *fiber.Ctx) error {
 }
 
 func DeleteConsole(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var console models.Console
 
@@ -148,6 +153,7 @@ func DeleteConsole(c *fiber.Ctx) error {
 }
 
 func ReactivateConsole(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var console models.Console
 

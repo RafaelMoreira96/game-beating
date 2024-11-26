@@ -14,8 +14,10 @@ func (a AccessType) String() string {
 // Administrator struct
 type Administrator struct {
 	IdAdministrator uint       `gorm:"primaryKey" json:"id_administrator"`
+	Name            string     `json:"name"`
 	Email           string     `json:"email"`
 	Nickname        string     `json:"nickname"`
 	Password        string     `json:"password"`
 	AccessType      AccessType `json:"access_type"`
+	IsActive        bool       `json:"is_active"`
 }

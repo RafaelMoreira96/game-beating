@@ -1,12 +1,28 @@
 package controllers
 
 import (
+	"github.com/RafaelMoreira96/game-beating-project/controllers/utils"
 	"github.com/RafaelMoreira96/game-beating-project/database"
 	"github.com/RafaelMoreira96/game-beating-project/models"
 	"github.com/gofiber/fiber/v2"
 )
 
+/* func GetTokenInfos(c *fiber.Ctx) (uint, error) {
+	userID, ok := c.Locals("userID").(uint)
+	if !ok {
+		return 0, fiber.NewError(fiber.StatusBadRequest, "error getting user id")
+	}
+
+	role := c.Locals("role").(string)
+	if role != "admin" {
+		return 0, fiber.NewError(fiber.StatusForbidden, "Access denied")
+	}
+
+	return userID, nil
+} */
+
 func AddManufacturer(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var manufacturer models.Manufacturer
 	manufacturer.IsActive = true
@@ -57,6 +73,7 @@ func ListAllManufacturers(c *fiber.Ctx) error {
 }
 
 func ListDeactivateManufacturers(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var manufacturers []models.Manufacturer
 
@@ -81,6 +98,7 @@ func ViewManufacturer(c *fiber.Ctx) error {
 }
 
 func UpdateManufacturer(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 
 	// Object in DB
@@ -123,6 +141,7 @@ func UpdateManufacturer(c *fiber.Ctx) error {
 }
 
 func DeleteManufacturer(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var manufacturer models.Manufacturer
 
@@ -145,6 +164,7 @@ func DeleteManufacturer(c *fiber.Ctx) error {
 }
 
 func ReactivateManufacturer(c *fiber.Ctx) error {
+	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()
 	var manufacturer models.Manufacturer
 

@@ -10,10 +10,11 @@ import (
 
 var secretKey = []byte("game-beating-jwt")
 
-func GenerateJWT(playerID uint) (string, error) {
+func GenerateJWT(userUD uint, role string) (string, error) {
 	claims := jwt.MapClaims{
-		"player_id": playerID,
-		"exp":       time.Now().Add(time.Hour * 72).Unix(),
+		"user_id": userUD,
+		"role":    role,
+		"exp":     time.Now().Add(time.Hour * 72).Unix(),
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
@@ -41,11 +42,17 @@ func JWTMiddleware(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Invalid claims"})
 	}
 
-	playerID, ok := claims["player_id"].(float64)
+	userID, ok := claims["user_id"].(float64)
 	if !ok {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Player ID not found"})
 	}
 
-	c.Locals("playerID", uint(playerID))
+	role, ok := claims["role"].(string)
+	if !ok {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Role not found"})
+	}
+
+	c.Locals("userID", uint(userID))
+	c.Locals("role", role)
 	return c.Next()
 }
