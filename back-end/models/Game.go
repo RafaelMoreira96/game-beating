@@ -16,7 +16,7 @@ type Game struct {
 	ConsoleID   uint       `json:"console_id"`
 	Console     Console    `gorm:"foreignKey:ConsoleID" json:"-"`
 	DateBeating utils.Date `json:"date_beating"`
-	TimeBeating string     `json:"time_beating"`
+	TimeBeating float64    `json:"time_beating"`
 	ReleaseYear string     `json:"release_year"`
 	PlayerID    uint       `json:"player_id"`
 	Player      Player     `gorm:"foreignKey:PlayerID" json:"-"`
