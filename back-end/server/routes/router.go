@@ -2,13 +2,16 @@ package routes
 
 import (
 	"github.com/RafaelMoreira96/game-beating-project/controllers"
+	"github.com/RafaelMoreira96/game-beating-project/utils"
 	"github.com/gofiber/fiber/v2"
 )
 
 func SetupRoutes(app *fiber.App) {
-	/* Security JWT implements
+	// Login route method
+	app.Post("api/v1/login", controllers.Login)
+
+	/* Security JWT implements */
 	app.Use(utils.JWTMiddleware)
-	*/
 
 	// Manufacturer routes methods
 	app.Post("api/v1/manufacturer", controllers.AddManufacturer)
