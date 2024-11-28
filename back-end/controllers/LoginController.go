@@ -53,9 +53,12 @@ func LoginPlayer(c *fiber.Ctx) error {
 		})
 	}
 
+	c.Set("Authorization", "Bearer "+token)
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"token": token,
+		"message": "Login successful",
+		"token":   token,
 	})
+
 }
 
 func LoginAdmin(c *fiber.Ctx) error {

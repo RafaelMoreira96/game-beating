@@ -50,15 +50,7 @@ func AddGame(c *fiber.Ctx) error {
 		})
 	}
 
-	var player models.Player
-	if err := db.Where("id_player = ?", game.PlayerID).First(&player).Error; err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"message": "player not found",
-		})
-	}
-
 	game.PlayerID = playerID
-
 	if err := db.Create(&game).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error creating game",

@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Jogos zerados</h2>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Nome do Jogo</th>
+        <th>Gênero</th>
+        <th>Desenvolvedor</th>
+        <th>Ano de Lançamento</th>
+        <th>Plataforma</th>
+        <th>Tempo de Conclusão (horas)</th>
+        <th>Data de Conclusão</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of games; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ game.name_game }}</td>
+        <td>{{ game.genre_id }}</td>
+        <td>{{ game.developer }}</td>
+        <td>{{ game.release_year }}</td>
+        <td>{{ game.console_id }}</td>
+        <td>{{ game.time_beating }}</td>
+        <td>{{ game.date_beating | date : "dd/MM/yyyy" }}</td>
+        <td></td>
+        <td>
+          <button class="btn btn-warning btn-sm mr-2">Editar</button>
+          <button class="btn btn-danger btn-sm">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

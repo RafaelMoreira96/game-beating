@@ -1,4 +1,4 @@
-## Game Beating Project
+# Game Beating Project
 
 Este projeto fornece uma API RESTful para gerenciar informações relacionadas ao jogos que um jogador já finalizou. Abaixo estão as rotas disponíveis e o que se espera em cada uma delas.
 
