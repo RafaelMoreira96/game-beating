@@ -19,7 +19,26 @@ export class AuthService {
 
     return this.http
       .post(`${this.BASE_URL}/login`, loginPayload, {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }), 
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        observe: 'response',
+        responseType: 'json',
+      })
+      .pipe(
+        catchError((error) => {
+          console.error('Erro na autenticação:', error);
+          return throwError(
+            () => new Error('Falha na autenticação, tente novamente.')
+          );
+        })
+      );
+  }
+
+  authenticateAdmin(nickname: string, password: string): Observable<any> {
+    const loginPayload = { nickname, password };
+
+    return this.http
+      .post(`${this.BASE_URL}/admin_login`, loginPayload, {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         observe: 'response',
         responseType: 'json',
       })
@@ -48,5 +67,14 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  getUserRole(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1])); 
+      return payload.role; 
+    }
+    return null;
   }
 }

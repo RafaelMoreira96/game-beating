@@ -18,16 +18,21 @@
       <tr *ngFor="let game of games; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ game.name_game }}</td>
-        <td>{{ game.genre_id }}</td>
+        <td>{{ game.genre?.name_genre }}</td>
         <td>{{ game.developer }}</td>
         <td>{{ game.release_year }}</td>
-        <td>{{ game.console_id }}</td>
+        <td>{{ game.console?.name_console }}</td>
         <td>{{ game.time_beating }}</td>
         <td>{{ game.date_beating | date : "dd/MM/yyyy" }}</td>
-        <td></td>
         <td>
-          <button class="btn btn-warning btn-sm mr-2">Editar</button>
-          <button class="btn btn-danger btn-sm">Excluir</button>
+          <div class="d-flex gap-2">
+            <button class="btn btn-warning btn-sm mr-2">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>

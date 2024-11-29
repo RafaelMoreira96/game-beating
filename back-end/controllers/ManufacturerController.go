@@ -7,20 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-/* func GetTokenInfos(c *fiber.Ctx) (uint, error) {
-	userID, ok := c.Locals("userID").(uint)
-	if !ok {
-		return 0, fiber.NewError(fiber.StatusBadRequest, "error getting user id")
-	}
-
-	role := c.Locals("role").(string)
-	if role != "admin" {
-		return 0, fiber.NewError(fiber.StatusForbidden, "Access denied")
-	}
-
-	return userID, nil
-} */
-
 func AddManufacturer(c *fiber.Ctx) error {
 	utils.GetAdminTokenInfos(c)
 	db := database.GetDatabase()

@@ -78,7 +78,7 @@ func GetBeatenList(c *fiber.Ctx) error {
 	db := database.GetDatabase()
 
 	var games []models.Game
-	if err := db.Where("player_id = ?", playerID).Find(&games).Error; err != nil {
+	if err := db.Preload("Genre").Preload("Console").Where("player_id = ?", playerID).Find(&games).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error into find games",
 		})

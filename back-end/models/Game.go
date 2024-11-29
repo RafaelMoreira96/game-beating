@@ -12,9 +12,9 @@ type Game struct {
 	NameGame    string     `json:"name_game"`
 	Developer   string     `json:"developer"`
 	GenreID     uint       `json:"genre_id"`
-	Genre       Genre      `gorm:"foreignKey:GenreID" json:"-"`
+	Genre       Genre      `gorm:"foreignKey:GenreID" json:"genre"`
 	ConsoleID   uint       `json:"console_id"`
-	Console     Console    `gorm:"foreignKey:ConsoleID" json:"-"`
+	Console     Console    `gorm:"foreignKey:ConsoleID" json:"console"`
 	DateBeating utils.Date `json:"date_beating"`
 	TimeBeating float64    `json:"time_beating"`
 	ReleaseYear string     `json:"release_year"`

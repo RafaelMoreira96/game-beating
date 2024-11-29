@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { NgForm } from '@angular/forms';  // Import NgForm para validação
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-player-login',
+  templateUrl: './player-login.component.html',
+  styleUrls: ['./player-login.component.css'],
 })
-export class LoginComponent {
+export class PlayerLoginComponent {
   nickname: string = '';
   password: string = '';
 

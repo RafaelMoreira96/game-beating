@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ConsoleService } from '../../services/console.service';
-import { GenreService } from '../../services/genre.service';
-import { GameService } from '../../services/game.service';
-import { Game } from '../../models/game';
-import { Genre } from '../../models/genre';
-import { Console } from '../../models/console';
+import { ConsoleService } from '../../../services/console.service';
+import { GenreService } from '../../../services/genre.service';
+import { GameService } from '../../../services/game.service';
+import { Game } from '../../../models/game';
+import { Genre } from '../../../models/genre';
+import { Console } from '../../../models/console';
 
 @Component({
   selector: 'app-register-game',
