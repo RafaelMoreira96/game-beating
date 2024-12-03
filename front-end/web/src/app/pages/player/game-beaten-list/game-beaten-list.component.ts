@@ -9,6 +9,7 @@ import { Game } from '../../../models/game';
 })
 export class GameBeatenListComponent implements OnInit {
   games: Game[] = [];
+  
   constructor(private service: GameService) {}
 
   ngOnInit(): void {
@@ -24,9 +25,5 @@ export class GameBeatenListComponent implements OnInit {
         console.log(ex);
       }
     );
-  }
-
-  getAllGenre() {
-    
   }
 }

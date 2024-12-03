@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <h2 class="mb-2">Atualizações do projeto</h2>
 
   <div *ngFor="let log of logs" class="card" style="margin-bottom: 1rem">
@@ -7,7 +7,8 @@
         #{{ log.id_project_update_log }}: {{ log.description }}
       </h4>
       <h6 class="card-subtitle mb-2 text-body-secondary pb-2">
-        Log by {{ log.administrator?.name }}
+        Log by {{ log.administrator?.name }}. 
+        <span *ngIf="log.created_at">{{ log.created_at | date: 'dd/MM/yyyy HH:mm' }}</span>
       </h6>
       <p class="card-text">
         <strong>O que foi feito:</strong> {{ log.content }}

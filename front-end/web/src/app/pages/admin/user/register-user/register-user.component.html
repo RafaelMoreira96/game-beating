@@ -1,0 +1,96 @@
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100 bg-black2"
+>
+  <div class="card p-4 shadow-lg" style="width: 600px">
+    <div class="text-center mb-4">
+      <h3>Cadastrar Administrador</h3>
+    </div>
+    <form (ngSubmit)="registerUser()" #adminForm="ngForm">
+      <!-- Nome -->
+      <div class="form-group mb-3">
+        <label for="name">Nome</label>
+        <input
+          class="form-control"
+          id="name"
+          [(ngModel)]="admin.name"
+          name="name"
+          placeholder="Digite o nome"
+          required
+        />
+        <div
+          *ngIf="adminForm.submitted && !admin.name"
+          class="text-danger"
+        >
+          Nome é obrigatório.
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group mb-3">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="admin.email"
+          name="email"
+          placeholder="Digite o email"
+          required
+        />
+        <div
+          *ngIf="adminForm.submitted && !admin.email"
+          class="text-danger"
+        >
+          Email é obrigatório.
+        </div>
+      </div>
+
+      <!-- Nickname -->
+      <div class="form-group mb-3">
+        <label for="nickname">Nickname</label>
+        <input
+          class="form-control"
+          id="nickname"
+          [(ngModel)]="admin.nickname"
+          name="nickname"
+          placeholder="Digite o nickname"
+          required
+        />
+        <div
+          *ngIf="adminForm.submitted && !admin.nickname"
+          class="text-danger"
+        >
+          Nickname é obrigatório.
+        </div>
+      </div>
+
+      <!-- Senha -->
+      <div class="form-group mb-3">
+        <label for="password"> Senha </label>
+        <input
+          class="form-control"
+          id="password"
+          [(ngModel)]="admin.password"
+          name="password"
+          placeholder="Digite a Senha"
+          required
+        />
+        <div
+          *ngIf="adminForm.submitted && !admin.password"
+          class="text-danger"
+        >
+          A senha é obrigatória.
+        </div>
+      </div>
+
+      <!-- Botão de Submissão -->
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        [disabled]="adminForm.invalid"
+      >
+        Cadastrar Administrador
+      </button>
+    </form>
+  </div>
+</div>

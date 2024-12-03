@@ -6,6 +6,7 @@ export class ProjectUpdateLog {
     author_id: number;
     administrator?: Administrator;
     content: string;
+    created_at?: string;
 
     constructor() {
         this.id_project_update_log = 0;

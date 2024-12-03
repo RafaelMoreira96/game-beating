@@ -52,7 +52,7 @@ func GetConsoles(c *fiber.Ctx) error {
 	db := database.GetDatabase()
 	var consoles []models.Console
 
-	if err := db.Where("is_active = true").Find(&consoles).Error; err != nil {
+	if err := db.Preload("Manufacturer").Where("is_active = true").Find(&consoles).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error into find consoles",
 		})
@@ -66,7 +66,7 @@ func GetInactiveConsoles(c *fiber.Ctx) error {
 	db := database.GetDatabase()
 	var consoles []models.Console
 
-	if err := db.Where("is_active = false").Find(&consoles).Error; err != nil {
+	if err := db.Preload("Manufacturer").Where("is_active = false").Find(&consoles).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "error into find consoles",
 		})
@@ -79,7 +79,7 @@ func ViewConsole(c *fiber.Ctx) error {
 	db := database.GetDatabase()
 	var console models.Console
 
-	if err := db.Where("id_console = ? ", c.Params("id")).First(&console).Error; err != nil {
+	if err := db.Preload("Manufacturer").Where("id_console = ? ", c.Params("id")).First(&console).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "ID not found" + c.Params("id"),
 		})

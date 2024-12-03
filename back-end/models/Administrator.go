@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 // AccessType struct
 type AccessType int
 
@@ -20,4 +22,6 @@ type Administrator struct {
 	Password        string     `json:"password"`
 	AccessType      AccessType `json:"access_type"`
 	IsActive        bool       `json:"is_active"`
+	CreatedAt       time.Time  `json:"created_at"`
+	UpdatedAt       time.Time  `json:"updated_at"`
 }

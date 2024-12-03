@@ -1,0 +1,36 @@
+<div class="table-container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Fabricante</th>
+            <th>Data de Criação</th>
+            <th>Data de Atualização</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="consoleList.length === 0">
+            <td colspan="6" class="text-center">Nenhum gênero encontrado.</td>
+          </tr>
+    
+          <tr *ngFor="let item of consoleList">
+            <td>{{ item.id_console }}</td>
+            <td>{{ item.name_console }}</td>
+            <td>{{ item.manufacturer?.name_manufacturer }}</td>
+            <td>{{ item.created_at | date : "dd/MM/yyyy" }}</td>
+            <td>{{ item.updated_at | date : "dd/MM/yyyy" }}</td>
+            <td>
+              <button class="btn btn-danger" (click)="removeConsole(item.id_console)">
+                <i class="fas fa-trash"></i>
+              </button>
+              <button class="btn btn-warning" (click)="editConsole(item)">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>

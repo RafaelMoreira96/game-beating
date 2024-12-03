@@ -46,6 +46,12 @@ func LoginPlayer(c *fiber.Ctx) error {
 		})
 	}
 
+	if player.IsActive != true {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "account deactivated",
+		})
+	}
+
 	token, err := utils.GenerateJWT(player.IdPlayer, "player")
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
@@ -92,6 +98,12 @@ func LoginAdmin(c *fiber.Ctx) error {
 	if administrator.Password != user.Password {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": "invalid password",
+		})
+	}
+
+	if !administrator.IsActive {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "account deactivated",
 		})
 	}
 

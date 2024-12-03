@@ -21,4 +21,8 @@ export class ProjectUpdateLogService {
       headers: this.headers,
     });
   }
+
+  removeLog(id: number) {
+    return this.http.delete(`${this.BASE_URL}/${id}`, { headers: this.headers });
+  }
 }

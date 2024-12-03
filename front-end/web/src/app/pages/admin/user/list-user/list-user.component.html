@@ -1,0 +1,40 @@
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Nickname</th>
+        <th>Tipo Acesso</th>
+        <th>Data de cadastro</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="adminList.length === 0">
+        <td colspan="6" class="text-center">Nenhum gênero encontrado.</td>
+      </tr>
+
+      <tr *ngFor="let item of adminList">
+        <td>{{ item.id_administrator }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.nickname }}</td>
+        <td>{{ item.is_active ? "Admin" : "Manager" }}</td>
+        <td>{{ item.created_at | date: "dd/MM/yyyy" }}</td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="removeAdmin(item.id_administrator)"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+          <button class="btn btn-warning" (click)="editAdmin(item)">
+            <i class="fas fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

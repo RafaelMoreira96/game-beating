@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgForm } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
+import { NgForm } from '@angular/forms'; 
 
 @Component({
   selector: 'app-admin-login',
@@ -27,7 +27,7 @@ export class AdminLoginComponent {
 
     this.authService.authenticateAdmin(this.nickname, this.password).subscribe({
       next: (resposta) => {
-        const token = resposta.body?.token;  // Se o responseType é 'json', pega direto
+        const token = resposta.body?.token;  
         
         if (token) {
           this.authService.successfulLogin(token);

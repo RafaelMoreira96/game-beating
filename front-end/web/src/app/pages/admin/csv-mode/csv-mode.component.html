@@ -1,0 +1,87 @@
+<div>
+  <h1>Modo CSV</h1>
+
+  <div class="card text-center" style="height: 50vh">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            [ngClass]="{ active: activeTab === 'genero' }"
+            (click)="activeTab = 'genero'"
+            type="button"
+          >
+            Inserir CSV de Gêneros
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            [ngClass]="{ active: activeTab === 'fabricante' }"
+            (click)="activeTab = 'fabricante'"
+            type="button"
+          >
+            Inserir CSV de Fabricantes
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            [ngClass]="{ active: activeTab === 'coming-soon' }"
+            (click)="activeTab = 'coming-soon'"
+            type="button"
+          >
+            Em Breve
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body">
+      <!-- Aba 1: Inserir lista de gêneros -->
+      <div *ngIf="activeTab === 'genero'">
+        <h5 class="card-title">Inserir lista de gêneros</h5>
+        <p class="card-text">
+          Insira um arquivo CSV com os gêneros que deseja adicionar ao banco de
+          dados. 
+          <br/>
+          O arquivo deve conter uma coluna com o nome do gênero apenas.
+        </p>
+        <form (submit)="onSubmitGenero()">
+          <input
+            type="file"
+            accept=".csv"
+            (change)="onFileSelected($event, 'genero')"
+            class="form-control mb-3"
+            required
+          />
+          <button type="submit" class="btn btn-primary">Inserir</button>
+        </form>
+      </div>
+
+      <!-- Aba 2: Inserir lista de fabricantes -->
+      <div *ngIf="activeTab === 'fabricante'">
+        <h5 class="card-title">Inserir lista de fabricantes</h5>
+        <form (submit)="onSubmitFabricante()">
+          <input
+            type="file"
+            accept=".csv"
+            (change)="onFileSelected($event, 'fabricante')"
+            class="form-control mb-3"
+            required
+          />
+          <button type="submit" class="btn btn-primary">Inserir</button>
+        </form>
+      </div>
+
+      <!-- Aba 3: Em Breve -->
+      <div *ngIf="activeTab === 'coming-soon'">
+        <h5 class="card-title">Funcionalidade em Desenvolvimento</h5>
+        <p class="card-text">
+          Estamos trabalhando em novos recursos. Em breve, você terá acesso a
+          mais funcionalidades!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

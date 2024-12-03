@@ -19,8 +19,24 @@ export class AdministratorService {
     return this.http.get(`${this.BASE_URL}/view`, { headers: this.headers });
   }
 
-  deleteAdministrator() {
+  deleteAdministrator(id: number) {
     return this.http.delete(`${this.BASE_URL}/delete`, {
+      headers: this.headers,
+    });
+  }
+
+  getAdministrator(id: number) {
+    return this.http.get(`${this.BASE_URL}/view/${id}`, {
+      headers: this.headers,
+    });
+  }
+
+  getAdministrators() {
+    return this.http.get(`${this.BASE_URL}/list`, { headers: this.headers });
+  }
+
+  updateAdministrator(id: number, data: any) {
+    return this.http.put(`${this.BASE_URL}/update/${id}`, data, {
       headers: this.headers,
     });
   }

@@ -1,0 +1,35 @@
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Status</th>
+        <th>Data de Criação</th>
+        <th>Data de Atualização</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="genreList.length === 0">
+        <td colspan="6" class="text-center">Nenhum gênero encontrado.</td>
+      </tr>
+
+      <tr *ngFor="let item of genreList">
+        <td>{{ item.id_genre }}</td>
+        <td>{{ item.name_genre }}</td>
+        <td>{{ item.is_active ? "Ativo" : "Inativo" }}</td>
+        <td>{{ item.created_at | date : "dd/MM/yyyy" }}</td>
+        <td>{{ item.updated_at | date : "dd/MM/yyyy" }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeGenre(item.id_genre)">
+            <i class="fas fa-trash"></i>
+          </button>
+          <button class="btn btn-warning" (click)="editGenre(item)">
+            <i class="fas fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

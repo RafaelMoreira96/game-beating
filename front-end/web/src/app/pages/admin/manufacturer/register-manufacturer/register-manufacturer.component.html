@@ -1,0 +1,55 @@
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100 bg-black2"
+>
+  <div class="card p-4 shadow-lg" style="width: 600px">
+    <div class="text-center mb-4">
+      <h3>Cadastrar Fabricante</h3>
+    </div>
+    <form (ngSubmit)="registerManufacturer()" #manufacturerForm="ngForm">
+      <div class="form-group mb-3">
+        <label for="name_manufacturer">Nome do Fabricante</label>
+        <input
+          class="form-control"
+          id="name_manufacturer"
+          [(ngModel)]="manufacturer.name_manufacturer"
+          name="name_manufacturer"
+          placeholder="Digite o nome do fabricante"
+          required
+        />
+        <div
+          *ngIf="manufacturerForm.submitted && !manufacturer.name_manufacturer"
+          class="text-danger"
+        >
+          O nome do fabricante é obrigatório.
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="year_founded">Ano de Fundação</label>
+        <input
+          class="form-control"
+          id="year_founded"
+          type="text"
+          [(ngModel)]="manufacturer.year_founded"
+          name="year_founded"
+          placeholder="Digite o ano de fundação"
+          required
+        />
+        <div
+          *ngIf="manufacturerForm.submitted && !manufacturer.year_founded"
+          class="text-danger"
+        >
+          O ano de fundação é obrigatório.
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        [disabled]="manufacturerForm.invalid"
+      >
+        {{ isEditing ? "Atualizar Gênero" : "Cadastrar gênero" }}
+      </button>
+    </form>
+  </div>
+</div>

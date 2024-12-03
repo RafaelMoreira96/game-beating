@@ -1,0 +1,35 @@
+<div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Data de fundação</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="manufacturerList.length === 0">
+          <td colspan="6" class="text-center">Nenhum gênero encontrado.</td>
+        </tr>
+  
+        <tr *ngFor="let item of manufacturerList">
+          <td>{{ item.id_manufacturer }}</td>
+          <td>{{ item.name_manufacturer }}</td>
+          <td>{{ item.year_founded }}</td>
+          <td>{{ item.is_active ? "Ativo" : "Inativo" }}</td>
+
+          <td>
+            <button class="btn btn-danger" (click)="removeManufacturer(item.id_manufacturer)">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button class="btn btn-warning" (click)="editManufacturer(item)">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,36 @@
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100 bg-black2"
+>
+  <div class="card p-4 shadow-lg" style="width: 600px">
+    <div class="text-center mb-4">
+      <h3>Cadastrar Gênero</h3>
+    </div>
+    <form (ngSubmit)="registerGenre()" #genreForm="ngForm">
+      <div class="form-group mb-3">
+        <label for="nameGenre">Nome do Gênero</label>
+        <input
+          class="form-control"
+          id="nameGenre"
+          [(ngModel)]="genre.name_genre"
+          name="name_genre"
+          placeholder="Digite o nome do gênero"
+          required
+        />
+        <div
+          *ngIf="genreForm.submitted && !genre.name_genre"
+          class="text-danger"
+        >
+          O nome do gênero é obrigatório.
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        [disabled]="genreForm.invalid"
+      >
+        {{ isEditing ? "Atualizar Gênero" : "Cadastrar Gênero" }}
+      </button>
+    </form>
+  </div>
+</div>

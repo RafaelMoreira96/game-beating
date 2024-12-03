@@ -9,6 +9,7 @@ import { ProjectUpdateLog } from '../../../models/project-update-log';
 })
 export class ProjectUpdatesLogComponent implements OnInit {
   logs: ProjectUpdateLog[] = [];
+  
   constructor(private service: ProjectUpdateLogService) {}
 
   ngOnInit(): void {
@@ -18,7 +19,7 @@ export class ProjectUpdatesLogComponent implements OnInit {
   getLogs() {
     this.service.getLogs().subscribe(
       (result: any) => {
-        this.logs = result;
+        this.logs = result.slice(0).reverse();
         console.log(result);
       },
       (error) => {

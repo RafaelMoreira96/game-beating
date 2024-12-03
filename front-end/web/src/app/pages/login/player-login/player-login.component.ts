@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
-import { NgForm } from '@angular/forms';  // Import NgForm para validação
+import { NgForm } from '@angular/forms'; 
 
 @Component({
   selector: 'app-player-login',
@@ -27,7 +27,7 @@ export class PlayerLoginComponent {
 
     this.authService.authenticate(this.nickname, this.password).subscribe({
       next: (resposta) => {
-        const token = resposta.body?.token;  // Se o responseType é 'json', pega direto
+        const token = resposta.body?.token;  
         
         if (token) {
           this.authService.successfulLogin(token);
