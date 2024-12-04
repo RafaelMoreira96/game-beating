@@ -1,12 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Console } from '../models/console';
+import { API_CONFIG } from '../config/api.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConsoleService {
-  BASE_URL = 'http://localhost:8000/api/v1/console';
+  //BASE_URL = 'http://localhost:8000/api/v1/console';
+  BASE_URL = API_CONFIG.BASE_URL + '/api/v1/console';
   token = localStorage.getItem('token');
   headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 

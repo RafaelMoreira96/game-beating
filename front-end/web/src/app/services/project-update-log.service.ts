@@ -6,7 +6,8 @@ import { ProjectUpdateLog } from '../models/project-update-log';
   providedIn: 'root',
 })
 export class ProjectUpdateLogService {
-  BASE_URL = 'http://localhost:8000/api/v1/log';
+  //BASE_URL = 'http://localhost:8000/api/v1/log';
+  BASE_URL = 'https://game-beating.onrender.com/api/v1/log';
   token = localStorage.getItem('token');
   headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 

@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { API_CONFIG } from '../config/api.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
-  private readonly BASE_URL = 'http://localhost:8000/api/v1';
+  //private readonly BASE_URL = 'http://localhost:8000/api/v1';
   private jwtService: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient) {}
@@ -18,7 +19,7 @@ export class AuthService {
     const loginPayload = { nickname, password };
 
     return this.http
-      .post(`${this.BASE_URL}/login`, loginPayload, {
+      .post(`${API_CONFIG.BASE_URL}/api/v1/login`, loginPayload, {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         observe: 'response',
         responseType: 'json',
@@ -37,7 +38,7 @@ export class AuthService {
     const loginPayload = { nickname, password };
 
     return this.http
-      .post(`${this.BASE_URL}/admin_login`, loginPayload, {
+      .post(`${API_CONFIG.BASE_URL}/api/v1/admin_login`, loginPayload, {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         observe: 'response',
         responseType: 'json',

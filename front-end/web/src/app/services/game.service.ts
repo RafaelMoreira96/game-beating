@@ -6,7 +6,8 @@ import { Game } from '../models/game';
   providedIn: 'root',
 })
 export class GameService {
-  BASE_URL = 'http://localhost:8000/api/v1/game';
+  //BASE_URL = 'http://localhost:8000/api/v1/game';
+  BASE_URL = 'https://game-beating.onrender.com/api/v1/game';
   token = localStorage.getItem('token');
   headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 

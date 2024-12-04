@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PlayerService {
-  BASE_URL = 'http://localhost:8000/api/v1/player';
+  //BASE_URL = 'http://localhost:8000/api/v1/player';
+  BASE_URL = 'https://game-beating.onrender.com/api/v1/player';
   token = localStorage.getItem('token');
   headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 
