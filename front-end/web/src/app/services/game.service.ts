@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Game } from '../models/game';
+import { API_CONFIG } from '../config/api.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
-  //BASE_URL = 'http://localhost:8000/api/v1/game';
-  BASE_URL = 'https://game-beating.onrender.com/api/v1/game';
+  BASE_URL = API_CONFIG.BASE_URL + '/api/v1/game';
   token = localStorage.getItem('token');
   headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 

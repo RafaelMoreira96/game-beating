@@ -10,7 +10,6 @@ import { API_CONFIG } from '../config/api.config';
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
-  //private readonly BASE_URL = 'http://localhost:8000/api/v1';
   private jwtService: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient) {}

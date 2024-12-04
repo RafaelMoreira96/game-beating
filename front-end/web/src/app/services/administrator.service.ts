@@ -6,7 +6,6 @@ import { API_CONFIG } from '../config/api.config';
   providedIn: 'root',
 })
 export class AdministratorService {
-  //BASE_URL = 'http://localhost:8000/api/v1/admin';
   BASE_URL = API_CONFIG.BASE_URL + '/api/v1/admin';
   token = localStorage.getItem('token');
   headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
